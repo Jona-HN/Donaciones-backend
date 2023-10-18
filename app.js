@@ -11,6 +11,9 @@ app.get('/', (req, res) => {
     res.send("<h1>Backend del sistema de donaciones</h1>");
 })
 
+const loginRouter = require('./routes/login');
+app.use('/login', loginRouter);
+
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
 }).on('error', err => {
