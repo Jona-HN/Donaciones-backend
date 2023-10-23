@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
+const usuarioRouter = require('./routes/usuario');
+app.use('/usuario', usuarioRouter);
+
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
 }).on('error', err => {
