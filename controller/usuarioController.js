@@ -12,4 +12,11 @@ const crearUsuario = async function(req, res) {
     await res.json(usuarioCreado);
 }
 
+const getUsuarioById = async function(req, res) {
+    let usuario = await service.getUsuarioById(req.params.id);
+
+    await res.json(usuario);
+}
+
 module.exports.crearUsuario = crearUsuario;
+module.exports.getUsuarioById = getUsuarioById;
