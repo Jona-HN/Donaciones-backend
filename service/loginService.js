@@ -1,6 +1,6 @@
 const validarCredenciales = async function(credenciales) {
     const db = require('../db').dbConnection;
-    let sql = `SELECT COUNT(*) AS count 
+    let sql = `SELECT id, nombre
                FROM usuarios
                WHERE email = '${credenciales.email}'
                AND password = '${credenciales.password}'`;
@@ -8,10 +8,16 @@ const validarCredenciales = async function(credenciales) {
     return new Promise((resolve, reject) => {
         db.query(sql, (err, results) => {
             if (err) throw err;
+            let usuario = {};
 
-            let usuarioValido = results[0].count == 1;
+            if (results[0]) {
+                usuario = {
+                    id: results[0].id,
+                    nombre: results[0].nombre
+                };
+            }
     
-            resolve(usuarioValido);
+            resolve(usuario);
         });   
     });
 }
