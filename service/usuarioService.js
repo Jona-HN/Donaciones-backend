@@ -9,9 +9,16 @@ const crearUsuario = async function(credenciales) {
 
     return new Promise((resolve, reject) => {
         db.query(sql, (err, results) => {
-            if (err) throw err;
+            if (err) {
+                if (err.code == 'ER_DUP_ENTRY') {
+                    resolve({ error: 'correo duplicado' })
+                }
+                else {
+                    throw err;
+                }
+            }
 
-            resolve(true);
+            resolve({ creado: true });
         });   
     });
 }
