@@ -24,3 +24,11 @@
        UNIQUE (email)
    );
    ```
+4. Configuración Tesseract en Ubuntu (detección de caracteres en imágenes):
+
+    ```
+    pip3 install pytesseract
+    sudo apt install tesseract-ocr
+    pip3 install opencv-python
+    sudo apt install libgl1
+    ```
