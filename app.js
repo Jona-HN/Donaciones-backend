@@ -17,6 +17,9 @@ app.use('/login', loginRouter);
 const usuarioRouter = require('./routes/usuario');
 app.use('/usuario', usuarioRouter);
 
+const archivosRouter = require('./routes/archivos');
+app.use('/procesar', archivosRouter);
+
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
 }).on('error', err => {
