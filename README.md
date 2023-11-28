@@ -15,14 +15,37 @@
    QUIT;
    /* 4. Iniciar sesión con el nuevo usuario */
    mysql -u donacionesbackend -p donaciones
-   /* 5. Crear tabla de usuarios */
-   CREATE TABLE usuarios(
-       id INT PRIMARY KEY AUTO_INCREMENT,
-       nombre VARCHAR(100) NOT NULL,
-       email VARCHAR(100) NOT NULL,
-       password VARCHAR(100) NOT NULL,
-       UNIQUE (email)
-   );
+   /* 5. Crear tablas */
+    CREATE TABLE roles(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        descripcion VARCHAR(50) NOT NULL
+    );
+
+    CREATE TABLE usuarios(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_rol INT NOT NULL,
+        nombre VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE,
+        password VARCHAR(100) NOT NULL,
+        FOREIGN KEY (id_rol) REFERENCES roles(id)
+    );
+
+    CREATE TABLE coordinadores(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT NOT NULL,
+        facultad VARCHAR(100) NOT NULL,
+        num_empleado VARCHAR(50) NOT NULL UNIQUE,
+        ext_telefonica VARCHAR(10) NOT NULL,
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    );
+
+    CREATE TABLE administradores(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT NOT NULL,
+        num_empleado VARCHAR(50) NOT NULL UNIQUE,
+        ext_telefonica VARCHAR(10) NOT NULL
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    );
    ```
 4. Configuración Tesseract en Ubuntu (detección de caracteres en imágenes):
 
