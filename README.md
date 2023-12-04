@@ -34,6 +34,7 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
         facultad VARCHAR(100) NOT NULL,
+	carrera VARCHAR(100) NOT NULL,
         num_empleado VARCHAR(50) NOT NULL UNIQUE,
         ext_telefonica VARCHAR(10) NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
@@ -43,7 +44,7 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
         num_empleado VARCHAR(50) NOT NULL UNIQUE,
-        ext_telefonica VARCHAR(10) NOT NULL
+        ext_telefonica VARCHAR(10) NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
     );
    ```
