@@ -2,7 +2,7 @@ const crearUsuario = async function(credenciales) {
     const db = require('../db').dbConnection;
     
     // Asignar un valor predeterminado al campo tipo_usuario (por ejemplo, 1)
-    const tipoUsuarioPredeterminado = 3;
+    const tipoUsuarioPredeterminado = 1;
 
     let sql = `INSERT INTO usuarios (nombre, email, password, id_rol)
                VALUES (
