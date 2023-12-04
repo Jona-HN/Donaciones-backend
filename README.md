@@ -23,7 +23,7 @@
 
     CREATE TABLE usuarios(
         id INT PRIMARY KEY AUTO_INCREMENT,
-        id_rol INT NOT NULL,
+        id_rol INT NOT NULL DEFAULT 1,
         nombre VARCHAR(100) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
         password VARCHAR(100) NOT NULL,
@@ -34,7 +34,7 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
         facultad VARCHAR(100) NOT NULL,
-	carrera VARCHAR(100) NOT NULL,
+	    carrera VARCHAR(100) NOT NULL,
         num_empleado VARCHAR(50) NOT NULL UNIQUE,
         ext_telefonica VARCHAR(10) NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
