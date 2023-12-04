@@ -47,6 +47,38 @@
         ext_telefonica VARCHAR(10) NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
     );
+
+    CREATE TABLE cortes(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        facultad VARCHAR(100) NOT NULL,
+        monto_total FLOAT NOT NULL,
+        fecha_corte DATE NOT NULL,
+        ultima_actualizacion DATE NOT NULL,
+        estado VARCHAR(50)
+    );
+
+    CREATE TABLE recibos(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT NOT NULL,
+        monto FLOAT NOT NULL,
+        banco VARCHAR(100),
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    );
+
+    CREATE TABLE donaciones(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT NOT NULL,
+        id_corte INT NOT NULL DEFAULT 0,
+        id_recibo INT NOT NULL,
+        facultad VARCHAR(100) NOT NULL,
+        monto FLOAT NOT NULL,
+        fecha_pago DATE NOT NULL,
+        ultima_actualizacion DATE NOT NULL,
+        estado VARCHAR(50) NOT NULL,
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+        FOREIGN KEY (id_corte) REFERENCES cortes(id),
+        FOREIGN KEY (id_recibo) REFERENCES recibos(id)
+    );
    ```
 4. Configuración Tesseract en Ubuntu (detección de caracteres en imágenes):
 
