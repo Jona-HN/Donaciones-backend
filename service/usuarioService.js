@@ -1,10 +1,15 @@
 const crearUsuario = async function(credenciales) {
     const db = require('../db').dbConnection;
-    let sql = `INSERT INTO usuarios (nombre, email, password)
+    
+    // Asignar un valor predeterminado al campo tipo_usuario (por ejemplo, 1)
+    const tipoUsuarioPredeterminado = 2;
+
+    let sql = `INSERT INTO usuarios (nombre, email, password, tipo_usuario)
                VALUES (
                    '${credenciales.nombre}',
                    '${credenciales.email}',
-                   '${credenciales.password}'
+                   '${credenciales.password}',
+                   ${tipoUsuarioPredeterminado}
                )`;
 
     return new Promise((resolve, reject) => {
@@ -12,8 +17,7 @@ const crearUsuario = async function(credenciales) {
             if (err) {
                 if (err.code == 'ER_DUP_ENTRY') {
                     resolve({ error: 'correo duplicado' })
-                }
-                else {
+                } else {
                     throw err;
                 }
             }
