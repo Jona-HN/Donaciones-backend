@@ -33,7 +33,6 @@
     CREATE TABLE coordinadores(
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
-        facultad VARCHAR(100) NOT NULL,
 	    carrera VARCHAR(100) NOT NULL,
         num_empleado VARCHAR(50) NOT NULL UNIQUE,
         ext_telefonica VARCHAR(10) NOT NULL,
@@ -50,7 +49,7 @@
 
     CREATE TABLE cortes(
         id INT PRIMARY KEY AUTO_INCREMENT,
-        facultad VARCHAR(100) NOT NULL,
+        carrera VARCHAR(100) NOT NULL,
         monto_total FLOAT NOT NULL,
         fecha_corte DATE NOT NULL,
         ultima_actualizacion DATE NOT NULL,
@@ -68,9 +67,9 @@
     CREATE TABLE donaciones(
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
-        id_corte INT NOT NULL DEFAULT 0,
+        id_corte INT,
         id_recibo INT NOT NULL,
-        facultad VARCHAR(100) NOT NULL,
+        carrera VARCHAR(100) NOT NULL,
         monto FLOAT NOT NULL,
         fecha_pago DATE NOT NULL,
         ultima_actualizacion DATE NOT NULL,
