@@ -18,5 +18,12 @@ const getUsuarioById = async function(req, res) {
     await res.json(usuario);
 }
 
+const getPerfilCoordinadorById = async function(req, res) {
+    let coordinador = await service.getPerfilCoordinadorById(req.params.id);
+
+    await res.json(coordinador);
+}
+
 module.exports.crearUsuario = crearUsuario;
 module.exports.getUsuarioById = getUsuarioById;
+module.exports.getPerfilCoordinadorById = getPerfilCoordinadorById;

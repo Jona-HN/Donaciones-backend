@@ -51,5 +51,30 @@ const getUsuarioById = async function(id) {
     });
 }
 
+const getPerfilCoordinadorById = async function(id) {
+    const db = require('../db').dbConnection;
+    let sql = `SELECT
+                    c.num_empleado,
+                    u.nombre AS nombre,
+                    ca.nombre AS carrera,
+                    u.email,
+                    c.ext_telefonica
+                FROM coordinadores AS c
+                INNER JOIN usuarios u
+                ON c.id_usuario = u.id
+                INNER JOIN carreras ca
+                ON c.id_carrera = ca.id
+                WHERE id_usuario = ${id}`;            
+
+    return new Promise((resolve, reject) => {
+        db.query(sql, (err, results) => {
+            if (err) throw err;
+
+            resolve(results[0]);
+        });   
+    });
+}
+
 module.exports.crearUsuario = crearUsuario;
 module.exports.getUsuarioById = getUsuarioById;
+module.exports.getPerfilCoordinadorById = getPerfilCoordinadorById;
