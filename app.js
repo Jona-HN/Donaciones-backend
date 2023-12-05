@@ -23,17 +23,14 @@ app.use('/procesar', archivosRouter);
 const donacionRouter = require('./routes/donacion');
 app.use('/donaciones', donacionRouter);
 
-<<<<<<< HEAD
 const adminRouter = require('./routes/admin');
 app.use('/donacionesAdmin', adminRouter);
 
 const adminCortesRouter = require('./routes/adminCortes');
 app.use('/CortesAdmin', adminCortesRouter);
 
-=======
 const corteRouter = require('./routes/corte');
 app.use('/cortes', corteRouter);
->>>>>>> 04cb3eb709aa4e67c5d573f83a190d8fe8a9ff4b
 
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
