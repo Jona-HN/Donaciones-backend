@@ -1,6 +1,6 @@
 const validarCredenciales = async function(credenciales) {
     const db = require('../db').dbConnection;
-    let sql = `SELECT id, nombre
+    let sql = `SELECT id, id_rol, nombre
                FROM usuarios
                WHERE email = '${credenciales.email}'
                AND password = '${credenciales.password}'`;
@@ -13,7 +13,8 @@ const validarCredenciales = async function(credenciales) {
             if (results[0]) {
                 usuario = {
                     id: results[0].id,
-                    nombre: results[0].nombre
+                    nombre: results[0].nombre,
+                    rol: results[0].id_rol
                 };
             }
     
@@ -24,7 +25,7 @@ const validarCredenciales = async function(credenciales) {
 
 const validarGoogle = async function(credenciales) {
     const db = require('../db').dbConnection;
-    let sql = `SELECT id, nombre
+    let sql = `SELECT id, nombre, id_rol
                FROM usuarios
                WHERE email = '${credenciales.email}'`;
 
@@ -36,7 +37,8 @@ const validarGoogle = async function(credenciales) {
             if (results[0]) {
                 usuario = {
                     id: results[0].id,
-                    nombre: results[0].nombre
+                    nombre: results[0].nombre,
+                    rol: results[0].id_rol
                 };
             }
     
