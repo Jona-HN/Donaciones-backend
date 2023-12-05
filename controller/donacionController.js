@@ -1,7 +1,11 @@
 const service = require('../service/donacionService');
 
 const consultarDonaciones = async function(req, res) {
-    let donaciones = await service.consultarDonaciones();
+    const filtros = {
+        idCarrera: req.body.idCarrera
+    }
+
+    let donaciones = await service.consultarDonaciones(filtros);
 
     await res.json(donaciones);
 }
