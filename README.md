@@ -30,13 +30,19 @@
         FOREIGN KEY (id_rol) REFERENCES roles(id)
     );
 
+    CREATE TABLE carreras(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        nombre VARCHAR(100) NOT NULL
+    );
+
     CREATE TABLE coordinadores(
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL,
-	    carrera VARCHAR(100) NOT NULL,
+	    id_carrera INT NOT NULL,
         num_empleado VARCHAR(50) NOT NULL UNIQUE,
         ext_telefonica VARCHAR(10) NOT NULL,
-        FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+        FOREIGN KEY (id_carrera) REFERENCES carreras(id)
     );
 
     CREATE TABLE administradores(
@@ -49,11 +55,12 @@
 
     CREATE TABLE cortes(
         id INT PRIMARY KEY AUTO_INCREMENT,
-        carrera VARCHAR(100) NOT NULL,
+        id_carrera INT NOT NULL,
         monto_total FLOAT NOT NULL,
         fecha_corte DATE NOT NULL,
         ultima_actualizacion DATE NOT NULL,
-        estado VARCHAR(50)
+        estado VARCHAR(50),
+        FOREIGN KEY (id_carrera) REFERENCES carreras(id)
     );
 
     CREATE TABLE recibos(
@@ -69,14 +76,15 @@
         id_usuario INT NOT NULL,
         id_corte INT,
         id_recibo INT NOT NULL,
-        carrera VARCHAR(100) NOT NULL,
+        id_carrera INT NOT NULL,
         monto FLOAT NOT NULL,
         fecha_pago DATE NOT NULL,
         ultima_actualizacion DATE NOT NULL,
         estado VARCHAR(50) NOT NULL,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
         FOREIGN KEY (id_corte) REFERENCES cortes(id),
-        FOREIGN KEY (id_recibo) REFERENCES recibos(id)
+        FOREIGN KEY (id_recibo) REFERENCES recibos(id),
+        FOREIGN KEY (id_carrera) REFERENCES carreras(id)
     );
    ```
 4. Configuración Tesseract en Ubuntu (detección de caracteres en imágenes):
