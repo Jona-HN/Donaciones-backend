@@ -20,6 +20,9 @@ app.use('/usuario', usuarioRouter);
 const archivosRouter = require('./routes/archivos');
 app.use('/procesar', archivosRouter);
 
+const donacionRouter = require('./routes/donacion');
+app.use('/donaciones', donacionRouter);
+
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
 }).on('error', err => {
