@@ -23,6 +23,9 @@ app.use('/procesar', archivosRouter);
 const donacionRouter = require('./routes/donacion');
 app.use('/donaciones', donacionRouter);
 
+const corteRouter = require('./routes/corte');
+app.use('/cortes', corteRouter);
+
 app.listen(process.env.port, () => {
     console.log(`Escuchando el puerto ${process.env.port}`);
 }).on('error', err => {
