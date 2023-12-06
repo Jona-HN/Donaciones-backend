@@ -75,6 +75,30 @@ const getPerfilCoordinadorById = async function(id) {
     });
 }
 
+const getPerfilAdministradorById = async function(id) {
+    const db = require('../db').dbConnection;
+    let sql = `SELECT
+                    a.num_empleado,
+                    u.nombre AS nombre,
+                    u.email,
+                    a.ext_telefonica
+                FROM administradores AS a
+                INNER JOIN usuarios u
+                ON a.id_usuario = u.id
+                WHERE id_usuario = ${id}`;            
+
+    return new Promise((resolve, reject) => {
+        db.query(sql, (err, results) => {
+            if (err) throw err;
+
+            resolve(results[0]);
+        });   
+    });
+}
+
+
+
 module.exports.crearUsuario = crearUsuario;
 module.exports.getUsuarioById = getUsuarioById;
 module.exports.getPerfilCoordinadorById = getPerfilCoordinadorById;
+module.exports.getPerfilAdministradorById = getPerfilAdministradorById;

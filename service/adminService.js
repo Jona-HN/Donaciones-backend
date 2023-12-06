@@ -1,6 +1,7 @@
 const consultarDonacionesAdmin = async function() {
     const db = require('../db').dbConnection;
     let sql = `SELECT
+                    d.id,
                     u.nombre AS donante,
                     d.monto,
                     c.nombre AS carrera,
